@@ -39,6 +39,10 @@ animation_sprite = Sprite();
 animation_sprite.SetX(Window.GetX() + (Window.GetWidth() / 2 - images[0].GetWidth() / 2)); # Place images in the center
 animation_sprite.SetY(Window.GetY() + (Window.GetHeight() / 2 - images[0].GetHeight() / 2));
 
+# Set background color to white
+Window.SetBackgroundTopColor (1, 1, 1);
+Window.SetBackgroundBottomColor (1, 1, 1);
+
 progress = 0;
 
 fun refresh_callback ()
