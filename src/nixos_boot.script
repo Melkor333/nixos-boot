@@ -31,7 +31,7 @@ image_prefix = "nixos-";
 //--------------------------------- Refresh (Logo animation) --------------------------
 
 # cycle through all images
-for (i = 0; i < image_quantity; i++1
+for (i = 0; i < image_quantity; i++)
   images[i] = Image(image_prefix + i + ".png");
 animation_sprite = Sprite();
 
