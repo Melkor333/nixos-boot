@@ -25,6 +25,7 @@ pkgs.stdenv.mkDerivation rec {
     cp -r *png $out/share/plymouth/themes/nixos_boot
     cp -r nixos_boot.script $out/share/plymouth/themes/nixos_boot
     cp -r nixos_boot.plymouth $out/share/plymouth/themes/nixos_boot
+    chmod +x $out/share/plymouth/themes/nixos_boot/nixos_boot.plymouth $out/share/plymouth/themes/nixos_boot/nixos_boot.script
     find $out/share/plymouth -name "*.plymouth" -exec sed -i "s@\/usr\/@$out\/@" {} \;
   '';
 }
