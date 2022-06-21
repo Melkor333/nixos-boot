@@ -1,5 +1,3 @@
-***This is not yet functional :(***
-
 This repo contains a plymouth theme for Nixos, thanks to [discourse](https://discourse.nixos.org/t/genix7000-nix-project-logo-generator/15937/9) for giving me motivation.
 
 
