@@ -1,5 +1,6 @@
 {
-  pkgs ? import <nixpkgs> {}
+  pkgs ? import <nixpkgs> {},
+  theme ? "load_unload"
 }:
 pkgs.stdenv.mkDerivation rec {
   pname = "nixos_boot";
@@ -22,6 +23,7 @@ pkgs.stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
+    cd ${theme}
     cp -r *png $out/share/plymouth/themes/nixos_boot
     cp -r nixos_boot.script $out/share/plymouth/themes/nixos_boot
     cp -r nixos_boot.plymouth $out/share/plymouth/themes/nixos_boot
