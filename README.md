@@ -5,7 +5,7 @@ Until we have a proper looking `default.nix` use it like this (and you won't hav
 
 ``` nix
 let
-  nixos-boot = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  nixos-boot = builtins.fetchTarball "https://github.com/Melkor333/nixos-boot/archive/main.tar.gz";
 in
 {
   imports =
