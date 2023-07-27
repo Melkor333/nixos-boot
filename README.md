@@ -5,15 +5,19 @@ Until we have a proper looking `default.nix` use it like this (and you won't hav
 
 ``` nix
 let
-  nixos-boot = builtins.fetchTarball "https://github.com/Melkor333/nixos-boot/archive/main.tar.gz";
+  nixos-boot = pkgs.callPackage (builtins.fetchTarball "https://github.com/Melkor333/nixos-boot/archive/main.tar.gz");
 in
 {
-  imports =
-    [
-      #...
-      (import nixos-boot)
-    ];
-  #...
+  # Configure Plymouth theme
+  boot.plymouth = {
+    enable = true;
+    themePackages = [ nixos-boot ];
+    theme = "nixos-boot";
+  };
+  # If you want the splash screen to be visible for at least 2 seconds
+  systemd.services.plymouth-quit = {
+    preStart = "${pkgs.coreutils}/bin/sleep 2";
+  };
 }
 ```
 
