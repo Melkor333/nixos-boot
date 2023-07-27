@@ -1,11 +1,11 @@
 {
   pkgs ? import <nixpkgs> {},
-  theme ? "load_unload",
-  bgColor ? "255, 255, 255", # rgb value between 0-1. TODO: Write hex to plymouth magic
+  theme ? "load_unload", # TODO: Should be a list when more themes come
+  bgColor ? "1, 1, 1", # rgb value between 0-1. TODO: Write hex to plymouth magic
 }:
 pkgs.stdenv.mkDerivation rec {
-  pname = "nixos-boot-${theme}";
-  version = "0.0.1";
+  pname = "nixos-boot";
+  version = "0.1.0";
 
   src = ./src;
 

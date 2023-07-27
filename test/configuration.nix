@@ -1,9 +1,18 @@
 { config, lib, pkgs, ...}:
 
 let
-  nixos_boot = pkgs.callPackage ../default.nix {
-  #bgColor = "0, 0, 0"; # Test black background color
-  # theme = "load_unload";
+  #nixos-boot-src = import ../default.nix;
+  # Fetch the repository
+  nixos-boot-src = pkgs.fetchFromGitHub {
+    owner = "Melkor333";
+    repo = "nixos-boot";
+    rev = "add-tests";
+    sha256 = "sha256-Dj8LhVTOrHEnqgONbCEKIEyglO7zQej+KS08faO9NJk=";
+  };
+  # define the package
+  nixos-boot = pkgs.callPackage nixos-boot-src {
+    bgColor = "0.1, 1, 0.8"; # Test roughly mint background color
+    #theme = "load_unload";
   };
 in
 {
@@ -13,8 +22,8 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth = {
     enable = true;
-    themePackages = [ nixos_boot ];
-    theme = "nixos_boot";
+    themePackages = [ nixos-boot ];
+    theme = "load_unload";
   };
   systemd.services.plymouth-quit = {
     preStart = "${pkgs.coreutils}/bin/sleep 5";
