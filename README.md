@@ -1,6 +1,11 @@
+**Warning: Using this repo for some reason bloats the `initrd` quite a bit (up to 50 MB). Use it with [boot.loader.systemd-boot.configurationLimit](https://search.nixos.org/options?channel=23.05&show=boot.loader.systemd-boot.configurationLimit&from=0&size=50&sort=relevance&type=packages&query=systemd-boot) or a `/boot` of at least a gigabyte.**
+
+
 This repo contains a plymouth theme for Nixos, thanks to [discourse](https://discourse.nixos.org/t/genix7000-nix-project-logo-generator/15937/9) for giving me motivation.
 
-The package is currently not included with nixpkgs. You can include it like this in your `configuration.nix`:
+# Install
+
+The package is currently not in nixpkgs. You can include it in your `configuration.nix` like this:
 
 ``` nix
 { config, lib, pkgs, ...}:
@@ -35,6 +40,10 @@ in
   #};
 }
 ```
+
+# Themes
+
+## load_unload
 
 The first theme, load & unload:
 

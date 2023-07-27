@@ -1,14 +1,14 @@
 { config, lib, pkgs, ...}:
 
 let
-  #nixos-boot-src = import ../default.nix;
+  nixos-boot-src = import ../default.nix;
   # Fetch the repository
-  nixos-boot-src = pkgs.fetchFromGitHub {
-    owner = "Melkor333";
-    repo = "nixos-boot";
-    rev = "add-tests";
-    sha256 = "sha256-Dj8LhVTOrHEnqgONbCEKIEyglO7zQej+KS08faO9NJk=";
-  };
+  #nixos-boot-src = pkgs.fetchFromGitHub {
+  #  owner = "Melkor333";
+  #  repo = "nixos-boot";
+  #  rev = "add-tests";
+  #  sha256 = "sha256-Tk8716LK8LNSM3uvDsVlps37KVqCvqR6riMmjdTBTAE=";
+  #};
   # define the package
   nixos-boot = pkgs.callPackage nixos-boot-src {
     bgColor = "0.1, 1, 0.8"; # Test roughly mint background color
