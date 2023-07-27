@@ -1,3 +1,3 @@
-test/testvm-efi-vars.fd
-test/testvm.qcow2
+testvm-efi-vars.fd
+testvm.qcow2
 result

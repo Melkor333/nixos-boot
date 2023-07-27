@@ -22,15 +22,14 @@ pkgs.stdenv.mkDerivation rec {
 
   buildPhase = ''
     # Set the Background Color
-    sed -i 's/\(Window\.SetBackground[^ ]*\).*/\1 (${bgColor});/' "${theme}/"*script
+    sed -i 's/\(Window\.SetBackground[^ ]*\).*/\1 (${bgColor});/' "${theme}/${theme}.script"
   '';
 
+  # Currently not multi-theme enabled
   installPhase = ''
     cd ${theme}
-    cp -r *png $out/share/plymouth/themes/${theme}
-    cp -r nixos_boot.script $out/share/plymouth/themes/${theme}/${theme}.script
-    cp -r nixos_boot.plymouth $out/share/plymouth/themes/${theme}/${theme}.plymouth
+    cp *png ${theme}.script ${theme}.plymouth $out/share/plymouth/themes/${theme}
     chmod +x $out/share/plymouth/themes/${theme}/${theme}.plymouth $out/share/plymouth/themes/${theme}/${theme}.script
-    find $out/share/plymouth -name "*.plymouth" -exec sed -i "s@\/usr\/@$out\/@" {} \;
+    sed -i "s@\/usr\/@$out\/@" $out/share/plymouth/themes/${theme}/${theme}.plymouth
   '';
 }
