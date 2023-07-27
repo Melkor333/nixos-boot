@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation rec {
   '';
 
   configurePhase = ''
-    mkdir -p $out/share/plymouth/themes/nixos_boot
+    mkdir -p $out/share/plymouth/themes/${theme}
   '';
 
   buildPhase = ''
@@ -27,10 +27,10 @@ pkgs.stdenv.mkDerivation rec {
 
   installPhase = ''
     cd ${theme}
-    cp -r *png $out/share/plymouth/themes/nixos_boot
-    cp -r nixos_boot.script $out/share/plymouth/themes/nixos_boot
-    cp -r nixos_boot.plymouth $out/share/plymouth/themes/nixos_boot
-    chmod +x $out/share/plymouth/themes/nixos_boot/nixos_boot.plymouth $out/share/plymouth/themes/nixos_boot/nixos_boot.script
+    cp -r *png $out/share/plymouth/themes/${theme}
+    cp -r nixos_boot.script $out/share/plymouth/themes/${theme}/${theme}.script
+    cp -r nixos_boot.plymouth $out/share/plymouth/themes/${theme}/${theme}.plymouth
+    chmod +x $out/share/plymouth/themes/${theme}/${theme}.plymouth $out/share/plymouth/themes/${theme}/${theme}.script
     find $out/share/plymouth -name "*.plymouth" -exec sed -i "s@\/usr\/@$out\/@" {} \;
   '';
 }
