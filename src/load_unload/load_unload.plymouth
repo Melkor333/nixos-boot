@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=load_unload
+Description=display a Growing & shrinking NixOS Logo
+Comment=created By Samuel Hierholzer thanks to GeNix7000 from cab
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/load_unload
+ScriptFile=/usr/share/plymouth/themes/load_unload/load_unload.script

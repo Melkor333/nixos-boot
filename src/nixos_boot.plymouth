@@ -1,9 +1,0 @@
-[Plymouth Theme]
-Name=nixos_boot
-Description=display a Growing & shrinking NixOS Logo
-Comment=created By Samuel Hierholzer thanks to GeNix7000 from cab
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/nixos_boot
-ScriptFile=/usr/share/plymouth/themes/nixos_boot/nixos_boot.script
