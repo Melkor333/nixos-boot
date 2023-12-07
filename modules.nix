@@ -1,8 +1,8 @@
 { pkgs, lib, config, ...}:
 let
   toBG = { red, green, blue }:
-    "${toString(255.0 / red)}, "
-    "${toString(255.0 / green)}, "
+    "${toString(255.0 / red)}, "   +
+    "${toString(255.0 / green)}, " +
     "${toString(255.0 / blue)})";
 in
 {
