@@ -16,7 +16,7 @@ You can include it in your `flakes.nix` like this:
   inputs.nixos-boot.url = "github:Melkor333/nixos-boot";
   outputs = { self, nixpkgs, nixos-boot }:
   {
-    nixosConfigurations."<hostname>" = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations."<hostname>" = nixpkgs.lib.nixosSystem {
       modules = [ nixos-boot.nixosModules.default ./configuration.nix ];
       system  = "x86_64-linux";
     };
