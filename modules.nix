@@ -1,9 +1,9 @@
 { pkgs, lib, config, ...}:
 let
   toBG = { red, green, blue }:
-    "${toString(255.0 / red)}, "   +
-    "${toString(255.0 / green)}, " +
-    "${toString(255.0 / blue)})";
+    "${toString(red   / 255.0)}, "   +
+    "${toString(green / 255.0)}, " +
+    "${toString(blue  / 255.0)})";
 in
 {
   options.nixos-boot.enable = lib.mkEnableOption "nixos-boot";
