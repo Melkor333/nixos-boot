@@ -3,7 +3,7 @@ let
   toBG = { red, green, blue }:
     "${toString(red   / 255.0)}, "   +
     "${toString(green / 255.0)}, " +
-    "${toString(blue  / 255.0)})";
+    "${toString(blue  / 255.0)}";
 in
 {
   options.nixos-boot.enable = lib.mkEnableOption "nixos-boot";
