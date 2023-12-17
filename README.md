@@ -5,12 +5,34 @@ This repo contains a plymouth theme for Nixos, thanks to [discourse](https://dis
 
 # Install
 
-The package is currently not in nixpkgs. You can include it in your `configuration.nix` like this:
+The package is currently not in nixpkgs. 
+
+## Flakes
+
+You can include it in your `flakes.nix` like this:
+
+```nix
+{
+  inputs.nixos-boot.url = "github:Melkor333/nixos-boot";
+  outputs = { self, nixpkgs, nixos-boot }:
+  {
+    nixosConfigurations."<hostname>" = nixpkgs.lib.nixosSystem {
+      modules = [ nixos-boot.nixosModules.default ./configuration.nix ];
+      system  = "x86_64-linux";
+    };
+  };
+}
+
+```
+
+
+## Non Flakes
+
+You can include it in your `configuration.nix` like this:
 
 ``` nix
 { config, lib, pkgs, ...}:
 let
-  #nixos-boot-src = import ../default.nix;
   # Fetch the repository
   nixos-boot-src = pkgs.fetchFromGitHub {
     owner = "Melkor333";
@@ -18,26 +40,31 @@ let
     rev = "main";
     sha256 = "sha256-Dj8LhVTOrHEnqgONbCEKIEyglO7zQej+KS08faO9NJk=";
   };
-  # define the theme you want to use
-  nixos-boot = pkgs.callPackage nixos-boot-src { };
-
-  # You might want to override the theme
-  #nixos-boot = pkgs.callPackage nixos-boot-src {
-  #  bgColor = "0.1, 1, 0.8"; # Weird 0-1 range RGB. In this example roughly mint
-  #  theme = "load_unload";
-  #};
 in
 {
-  boot.plymouth = {
-    enable = true;
-    themePackages = [ nixos-boot ];
-    theme = "load_unload";
-  };
+  imports = [ "${nixos-boot-src}/modules.nix" ];
+}
+```
 
-  # If you want to make sure the theme is seen when your computer starts too fast
-  #systemd.services.plymouth-quit = {
-  #  preStart = "${pkgs.coreutils}/bin/sleep 3";
-  #};
+## Configuration
+
+Enable nixos-boot in your configuration:
+
+```nix
+{ config, lib, pkgs, ...}:
+{
+  # ...
+  nixos-boot = {
+    enable  = true;
+
+    # Different colors
+    # bgColor.red   = 100; # 0 - 255
+    # bgColor.green = 100; # 0 - 255
+    # bgColor.blue  = 100; # 0 - 255
+
+    # If you want to make sure the theme is seen when your computer starts too fast
+    # duration = 3; # in seconds
+  };
 }
 ```
 
