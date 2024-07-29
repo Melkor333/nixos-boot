@@ -75,13 +75,13 @@ Enable nixos-boot in your configuration:
 
 The first theme, load & unload:
 
-![nixos logo loading and unloading](./src/load_unload/load_unload.gif)
+![nixos logo loading and unloading](./src/load_unload.gif)
 
 ## evil-nixos
 
 The first theme, load & unload:
 
-![nixos logo with communist colors](./src/evil-nixos/evil-nixos.gif)
+![nixos logo with communist colors](./src/evil-nixos.gif)
 
 # Adding new themes
 
