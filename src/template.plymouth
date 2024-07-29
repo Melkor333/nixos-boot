@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=THEME
+Description=WHAT IS IT?
+Comment=Created by ???
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/THEME
+ScriptFile=/usr/share/plymouth/themes/THEME/THEME.script

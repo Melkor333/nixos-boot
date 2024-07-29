@@ -76,3 +76,24 @@ Enable nixos-boot in your configuration:
 The first theme, load & unload:
 
 ![nixos logo loading and unloading](./src/load_unload/load_unload.gif)
+
+## evil-nixos
+
+The first theme, load & unload:
+
+![nixos logo with communist colors](./src/evil-nixos/evil-nixos.gif)
+
+# Adding new themes
+
+- Create directory under src
+- Copy all files as .png in there
+- copy the `src/template.plymouth` to `src/THEME/THEME.plymouth`
+  - replace the word THEME with the actual theme
+  - adjust the description & Comment
+- copy the `src/template.script` to `src/THEME/THEME.script`
+  - change the line "image_quantity" to match the amount of pictures
+  - Create a gif from the pngs in the folder:
+  ```
+  magick convert -delay 5 -loop 0 -background white $(ls -v *.png) -alpha remove THEME.gif
+  ```
+- Create a Readme Entry

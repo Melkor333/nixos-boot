@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=evil-nixos
+Description=weird evil nixos theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/evil-nixos
+ScriptFile=/usr/share/plymouth/themes/evil-nixos/evil-nixos.script

@@ -1,11 +1,12 @@
-{
-  pkgs ? import <nixpkgs> {},
-  theme ? "load_unload", # TODO: Should be a list when more themes come
-  bgColor ? "1, 1, 1", # rgb value between 0-1. TODO: Write hex to plymouth magic
+{ pkgs ? import <nixpkgs> { }
+, theme ? "load_unload"
+, # TODO: Should be a list when more themes come
+  bgColor ? "1, 1, 1"
+, # rgb value between 0-1. TODO: Write hex to plymouth magic
 }:
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   pname = "nixos-boot";
-  version = "0.1.0";
+  version = "0.2.0";
 
   src = ./src;
 
@@ -16,20 +17,25 @@ pkgs.stdenv.mkDerivation rec {
   unpackPhase = ''
   '';
 
-  configurePhase = ''
-    mkdir -p $out/share/plymouth/themes/${theme}
-  '';
-
   buildPhase = ''
+    # Create theme
+    cp template.plymouth "${theme}/${theme}.plymouth"
+    sed -i 's/THEME/${theme}/g' "${theme}/${theme}.plymouth"
+    sed -i 's/generic/${theme}/g' "${theme}/${theme}.plymouth"
     # Set the Background Color
-    sed -i 's/\(Window\.SetBackground[^ ]*\).*/\1 (${bgColor});/' "${theme}/${theme}.script"
+    cp generic.script ${theme}
+    sed -i 's/\(Window\.SetBackground[^ ]*\).*/\1 (${bgColor});/' ${theme}/generic.script
   '';
 
-  # Currently not multi-theme enabled
   installPhase = ''
-    cd ${theme}
-    cp *png ${theme}.script ${theme}.plymouth $out/share/plymouth/themes/${theme}
-    chmod +x $out/share/plymouth/themes/${theme}/${theme}.plymouth $out/share/plymouth/themes/${theme}/${theme}.script
-    sed -i "s@\/usr\/@$out\/@" $out/share/plymouth/themes/${theme}/${theme}.plymouth
+    # Set the Background Color
+    cp generic.script ${theme}
+    sed -i 's/\(Window\.SetBackground[^ ]*\).*/\1 (${bgColor});/' ${theme}/generic.script
+
+    # Copy files
+    install -m 755 -vDt "$out/share/plymouth/themes/${theme}" "${theme}/${theme}."{plymouth,script}
+    install -m 644 -vDt "$out/share/plymouth/themes/${theme}" "${theme}/"*png
+    # Fix path
+    sed -i "s@\/usr\/@$out\/@" "$out/share/plymouth/themes/${theme}/${theme}.plymouth"
   '';
 }
