@@ -93,7 +93,11 @@ The first theme, load & unload:
 - copy the `src/template.script` to `src/THEME/THEME.script`
   - change the line "image_quantity" to match the amount of pictures
   - Create a gif from the pngs in the folder:
-  ```
+  ```shell-session
   magick convert -delay 5 -loop 0 -background white $(ls -v *.png) -alpha remove THEME.gif
   ```
+- Add the new entry to `modules.nix`
+    ```nix
+    type = lib.types.enum [ "load_unload" "evil-nixos" "THEME" ];
+    ```
 - Create a Readme Entry
