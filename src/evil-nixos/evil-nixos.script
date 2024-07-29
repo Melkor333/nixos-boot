@@ -78,7 +78,7 @@ objcounter.update = fun() {
 objstore.add(objcounter);
 
 // ========== Animated logo
-NUMBER_OF_FRAMES = 120;
+NUMBER_OF_FRAMES = 60;
 
 logo = Object(Image("0.png"));
 for (i = 0; i < NUMBER_OF_FRAMES; i++)  { logo.frames[i] = Image( i + ".png"); }
