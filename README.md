@@ -79,7 +79,7 @@ The first theme, load & unload:
 
 ## evil-nixos
 
-The first theme, load & unload:
+The second theme, a spinning logo looking a bit communistic:
 
 ![nixos logo with communist colors](./src/evil-nixos.png)
 
