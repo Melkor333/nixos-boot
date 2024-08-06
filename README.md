@@ -81,7 +81,7 @@ The first theme, load & unload:
 
 The first theme, load & unload:
 
-![nixos logo with communist colors](./src/evil-nixos.gif)
+![nixos logo with communist colors](./src/evil-nixos.png)
 
 # Adding new themes
 
